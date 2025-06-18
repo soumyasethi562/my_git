@@ -1,0 +1,103 @@
+ Tagging and Versioning – Step-by-Step Guide
+
+---
+
+### 🔹 1. *Create a Tag for a Version*
+
+#### ✅ Lightweight Tag (just a name pointing to a commit)
+
+bash
+git tag v1.0
+
+
+* Simple, no metadata (date, author, message).
+* Think of it like a "bookmark" on a commit.
+
+#### ✅ Annotated Tag (recommended for releases)
+
+bash
+git tag -a v1.0 -m "Version 1.0 - Initial release"
+
+
+* Includes metadata like:
+
+  * Author
+  * Date
+  * Message
+  * GPG signature (optional)
+
+---
+
+### 🔹 2. *View All Tags*
+
+bash
+git tag
+
+
+You’ll see output like:
+
+
+v1.0
+v1.1
+
+
+---
+
+### 🔹 3. *Push Tags to Remote Repository*
+
+By default, tags are not pushed with git push, so you must push them explicitly.
+
+bash
+git push origin v1.0
+
+
+Or push all tags:
+
+bash
+git push origin --tags
+
+
+---
+
+### 🔹 4. *Checkout a Previous Tagged Version (Simulate Rollback)*
+
+To *roll back* to a previous version tagged as v1.0:
+
+bash
+git checkout v1.0
+
+
+> ⚠ Note: This puts you in a *"detached HEAD"* state. You’re not on any branch, just viewing that commit.
+
+To return to the latest state (e.g., main):
+
+bash
+git checkout main
+
+
+---
+
+### 🔹 5. *(Optional) Delete a Tag*
+
+#### Locally:
+
+bash
+git tag -d v1.0
+
+
+#### Remotely:
+
+bash
+git push origin --delete tag v1.0
+
+
+---
+
+## 🔁 Summary of Key Differences
+
+| Feature         | Lightweight Tag    | Annotated Tag                  |
+| --------------- | ------------------ | ------------------------------ |
+| Metadata        | ❌ No               | ✅ Yes (author, date, message)  |
+| Signed          | ❌ No               | ✅ Can be GPG signed            |
+| Use Case        | Internal bookmarks | Official releases              |
+| Command Example | git tag v1.0     | git tag -a v1.0 -m "Release" |
